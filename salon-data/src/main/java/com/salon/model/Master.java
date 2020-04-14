@@ -2,10 +2,9 @@ package com.salon.model;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -19,4 +18,8 @@ public class Master extends Person{
     @JoinColumn(name = "person_id"
             ,referencedColumnName = "id")
     private Person person;
+
+    @OneToMany(mappedBy = "master")
+    private Set<Appointment> appointments=
+            new HashSet<>();
 }
