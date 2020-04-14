@@ -16,10 +16,7 @@ import java.util.Set;
 @Entity
 public class Client extends Person  {
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "person_id"
-            ,referencedColumnName = "id")
-    private Person person;
+
 
     @OneToMany(mappedBy = "client")
     private Set<Appointment> appointments=

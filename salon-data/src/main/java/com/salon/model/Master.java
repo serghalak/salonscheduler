@@ -14,10 +14,7 @@ import java.util.Set;
 @Entity
 public class Master extends Person{
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "person_id"
-            ,referencedColumnName = "id")
-    private Person person;
+
 
     @OneToMany(mappedBy = "master")
     private Set<Appointment> appointments=
