@@ -38,6 +38,9 @@ public class Appointment extends IdEntity{
             ,referencedColumnName = "id")
     private Client client;
 
-
+    @ManyToOne
+    @JoinColumn(name="status_id"
+            ,referencedColumnName = "id")
+    private Status status;
 
 }
