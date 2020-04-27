@@ -2,9 +2,8 @@ package com.salon.controller;
 
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.salon.ui.model.request.ClientRequest;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/clients")
@@ -16,6 +15,11 @@ public class ClientController {
         System.out.println("api/clients get method ....");
 
     }
+
+//    @PostMapping
+//    public ClientResponse createUser(@RequestParam ClientRequest clientRequest){
+//
+//    }
 
 
 
