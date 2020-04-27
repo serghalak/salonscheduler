@@ -3,6 +3,7 @@ package com.salon.controller;
 
 
 import com.salon.ui.model.request.ClientRequest;
+import com.salon.ui.model.response.ClientResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,10 +17,11 @@ public class ClientController {
 
     }
 
-//    @PostMapping
-//    public ClientResponse createUser(@RequestParam ClientRequest clientRequest){
-//
-//    }
+    @PostMapping
+    public ClientResponse createUser(@RequestParam ClientRequest clientRequest){
+
+        return null;
+    }
 
 
 
