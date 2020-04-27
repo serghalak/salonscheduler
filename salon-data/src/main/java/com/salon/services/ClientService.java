@@ -8,6 +8,8 @@ import java.util.Set;
 public interface ClientService
         extends CrudService<Client,Long> {
 
-    Set<Client> findByLastName(String lastName);
+   //Set<Client> findByLastName(String lastName);
+
+
 
 }

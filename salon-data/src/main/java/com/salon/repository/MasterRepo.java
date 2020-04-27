@@ -6,7 +6,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MasterRepo extends PagingAndSortingRepository<Master,Long> {
+public interface MasterRepo
+        extends PagingAndSortingRepository<Master,Long> {
 
 //    List<Master> findMasterByFirstName(String firstName);
 //    List<Master>findMasterByLastName(String lastName);

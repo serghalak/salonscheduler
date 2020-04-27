@@ -20,6 +20,7 @@ public class ClientController {
     @PostMapping
     public ClientResponse createUser(@RequestParam ClientRequest clientRequest){
 
+        System.out.println(clientRequest);
         return null;
     }
 

@@ -9,16 +9,17 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepo extends PagingAndSortingRepository<User, Long> {
+public interface UserRepo
+        extends PagingAndSortingRepository<User, Long> {
 
-    User findByPerson_Email(String email);
-    User findByPerson_PhoneNumber(String phoneNumber);
-    //User findByClient_Email(String email);
-
-    //User findById(Long id);
-    User findByUserName(String userName);
-    User findByUserId(String userId);
-    User findByActivateCode(String code);
-    //User findByMaster_PhoneNumber(String phoneNumber);
-    Page<User> findByActive(Boolean isActive, Pageable pageable);
+//    User findByPerson_Email(String email);
+//    User findByPerson_PhoneNumber(String phoneNumber);
+//    //User findByClient_Email(String email);
+//
+//    //User findById(Long id);
+//    User findByUserName(String userName);
+//    User findByUserId(String userId);
+//    User findByActivateCode(String code);
+//    //User findByMaster_PhoneNumber(String phoneNumber);
+//    Page<User> findByActive(Boolean isActive, Pageable pageable);
 }
