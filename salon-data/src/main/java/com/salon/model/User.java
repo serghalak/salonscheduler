@@ -14,6 +14,7 @@ public class User extends IdEntity {
 
     private String password;
 
+    @Column(nullable = false,length = 50)
     private String userName;
 
     private String userId;

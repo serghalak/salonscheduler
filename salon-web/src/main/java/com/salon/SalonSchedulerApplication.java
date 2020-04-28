@@ -1,9 +1,11 @@
 package com.salon;
 
+import com.salon.datasourcebeans.MySqlDataSource;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
@@ -12,7 +14,12 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 public class SalonSchedulerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SalonSchedulerApplication.class, args);
+
+		ConfigurableApplicationContext context =
+				SpringApplication.run(SalonSchedulerApplication.class, args);
+		MySqlDataSource mySqlDataSource =
+				(MySqlDataSource) context.getBean( MySqlDataSource.class);
+		System.out.println("nameMySql: " + mySqlDataSource.getUsername());
 	}
 
 
