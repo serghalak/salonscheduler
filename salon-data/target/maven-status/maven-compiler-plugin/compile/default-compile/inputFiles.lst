@@ -1,7 +1,9 @@
+C:\work\salon-scheduler\salon-data\src\main\java\com\salon\ui\model\response\MasterResponse.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\CrudService.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\ui\model\request\ClientRequest.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\repository\AuthorityRepo.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\ClientService.java
+C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\impl\MasterServiceImpl.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\ui\model\response\PersonResponse.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\repository\UserRepo.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\repository\AppointmentRepo.java
@@ -11,6 +13,7 @@ C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\Specializati
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\User.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\model\Authority.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\config\PropertyConfig.java
+C:\work\salon-scheduler\salon-data\src\main\java\com\salon\ui\model\request\SpecializationRequest.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\dto\ClientDto.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\model\Specialization.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\repository\StatusRepo.java
@@ -23,8 +26,12 @@ C:\work\salon-scheduler\salon-data\src\main\java\com\salon\model\IdEntity.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\ui\model\response\ClientResponse.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\StatusService.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\datasourcebeans\MySqlDataSource.java
+C:\work\salon-scheduler\salon-data\src\main\java\com\salon\ui\model\response\SpecializationResponse.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\model\Client.java
+C:\work\salon-scheduler\salon-data\src\main\java\com\salon\dto\SpecializationDto.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\AuthorityService.java
+C:\work\salon-scheduler\salon-data\src\main\java\com\salon\ui\model\request\MasterRequest.java
+C:\work\salon-scheduler\salon-data\src\main\java\com\salon\dto\MasterDto.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\model\Master.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\AppointmentService.java
 C:\work\salon-scheduler\salon-data\src\main\java\com\salon\services\impl\ClientServiceImpl.java

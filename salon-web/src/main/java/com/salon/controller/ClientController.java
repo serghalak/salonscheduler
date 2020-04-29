@@ -30,7 +30,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ClientResponse createUser(@RequestBody ClientRequest clientRequest){
+    public ClientResponse createClient(@RequestBody ClientRequest clientRequest){
 
         ClientDto clientDto = convertToClientDto(clientRequest);
         ClientDto saveClientDto = clientService.save(clientDto);
