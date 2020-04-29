@@ -17,9 +17,9 @@ public class SalonSchedulerApplication {
 
 		ConfigurableApplicationContext context =
 				SpringApplication.run(SalonSchedulerApplication.class, args);
-		MySqlDataSource mySqlDataSource =
-				(MySqlDataSource) context.getBean( MySqlDataSource.class);
-		System.out.println("nameMySql: " + mySqlDataSource.getUsername());
+//		MySqlDataSource mySqlDataSource =
+//				(MySqlDataSource) context.getBean( MySqlDataSource.class);
+//		System.out.println("nameMySql: " + mySqlDataSource.getUsername());
 	}
 
 

@@ -18,9 +18,6 @@ public class ClientController {
     private ClientService clientService;
     private ModelMapper modelMapper;
 
-    @Autowired
-    private MySqlDataSource mySqlDataSource;
-
     public ClientController(ClientService clientService, ModelMapper modelMapper) {
         this.clientService = clientService;
         this.modelMapper = modelMapper;
@@ -28,7 +25,7 @@ public class ClientController {
 
     @GetMapping
     public void getAllClientAppointments(){
-        System.out.println("api/clients get method ...." + mySqlDataSource.getUsername());
+        System.out.println("api/clients get method ...." );
 
     }
 
