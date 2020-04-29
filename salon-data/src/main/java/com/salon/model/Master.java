@@ -10,11 +10,8 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 public class Master extends Person{
-
-
 
     @OneToMany(mappedBy = "master")
     private Set<Appointment> appointments=

@@ -12,12 +12,9 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "client")
 public class Client extends Person  {
-
-
 
     @OneToMany(mappedBy = "client")
     private Set<Appointment> appointments=

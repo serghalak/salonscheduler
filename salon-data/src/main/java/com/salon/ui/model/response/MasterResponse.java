@@ -6,13 +6,10 @@ import java.util.Set;
 
 public class MasterResponse extends PersonResponse {
 
+    private Set<SpecializationResponse> specializations=
+            new HashSet<>();//specializationResponse;
 
-
-    private Set<SpecializationResponse> specializations=new HashSet<>();//specializationResponse;
-
-
-
-    public Set<SpecializationResponse> getSpecializations() {
+    public Set<SpecializationResponse> getSpecializations(){
         return specializations;
     }
 

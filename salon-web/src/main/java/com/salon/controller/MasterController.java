@@ -1,14 +1,17 @@
 package com.salon.controller;
 
 
-import com.salon.dto.ClientDto;
+
 import com.salon.dto.MasterDto;
+
+
 import com.salon.services.MasterService;
-import com.salon.ui.model.request.ClientRequest;
+import com.salon.services.impl.MasterServiceImpl;
 import com.salon.ui.model.request.MasterRequest;
-import com.salon.ui.model.response.ClientResponse;
+
 import com.salon.ui.model.response.MasterResponse;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,8 +22,9 @@ public class MasterController {
     private MasterService masterService;
     private ModelMapper modelMapper;
 
-    public MasterController(MasterService masterService
-            , ModelMapper modelMapper) {
+
+    @Autowired
+    public MasterController(MasterService masterService, ModelMapper modelMapper) {
         this.masterService = masterService;
         this.modelMapper = modelMapper;
     }
@@ -32,6 +36,8 @@ public class MasterController {
 
     @PostMapping
     public MasterResponse createMaster(@RequestBody MasterRequest masterRequest){
+
+
         MasterDto masterDto = modelMapper.map(masterRequest, MasterDto.class);
         MasterDto saveMasterDto = masterService.save(masterDto);
         MasterResponse saveClientResponse = modelMapper.map(saveMasterDto, MasterResponse.class);

@@ -1,17 +1,16 @@
 package com.salon.services.impl;
 
-
-import com.salon.dto.ClientDto;
 import com.salon.dto.MasterDto;
-
-import com.salon.model.Client;
 import com.salon.model.Master;
 import com.salon.repository.MasterRepo;
+
 import com.salon.services.MasterService;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class MasterServiceImpl implements MasterService {
 
     private MasterRepo masterRepo;
