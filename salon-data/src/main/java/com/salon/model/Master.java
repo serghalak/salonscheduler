@@ -16,4 +16,12 @@ public class Master extends Person{
     @OneToMany(mappedBy = "master")
     private Set<Appointment> appointments=
             new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "master_specialization"
+            ,joinColumns = @JoinColumn(name = "master_id",referencedColumnName = "id")
+            ,inverseJoinColumns = @JoinColumn(name="specialization_id",referencedColumnName = "id"))
+    private Set<Specialization> specializations=new HashSet<>();
+
+
 }
