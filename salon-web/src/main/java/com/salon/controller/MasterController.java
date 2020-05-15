@@ -59,7 +59,7 @@ public class MasterController {
 
     @DeleteMapping(path = "/{id}")
     public void deleteMasterById(@PathVariable("id")Long id){
-
+        masterService.deleteById(id);
     }
 ////----------------------------------------------------------------------------------------
     private Set<MasterResponse>convertToSetMasterResponse(Set<MasterDto> masters){

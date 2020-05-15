@@ -47,13 +47,16 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public void delete(MasterDto object) {
-
+    public void delete(MasterDto masterDto) {
+        deleteById(masterDto.getId());
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    public void deleteById(Long id) {
+        Optional<Master> master = masterRepo.findById(id);
+        Master masterDelete = master.get();
+        masterDelete.setIsActive(false);
+        masterRepo.save(masterDelete);
     }
 
 //----------------------------------------------------------------
