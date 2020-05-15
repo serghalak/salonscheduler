@@ -11,6 +11,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -31,8 +32,9 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public MasterDto findById(Long aLong) {
-        return null;
+    public MasterDto findById(Long id) {
+        Optional<Master> master = masterRepo.findById(id);
+        return convertToMasterDto(master.get());
     }
 
     @Override
@@ -53,7 +55,7 @@ public class MasterServiceImpl implements MasterService {
 
     }
 
-
+//----------------------------------------------------------------
     private Master convertToMaster(MasterDto masterDto){
         return modelMapper.map(masterDto,Master.class);
     }

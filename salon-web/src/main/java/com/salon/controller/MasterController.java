@@ -42,7 +42,11 @@ public class MasterController {
     public Set<MasterResponse> getAllMasters(){
         Set<MasterDto> masters = masterService.findAll();
         return convertToSetMasterResponse(masters);
-        //System.out.println("api/masters/ all masters");
+    }
+
+    @GetMapping(path = "/{id}")
+    public MasterResponse getMasterById(@PathVariable("id")Long id){
+        return convertToMasterResponse(masterService.findById(id));
     }
 
     @PostMapping
