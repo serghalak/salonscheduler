@@ -28,7 +28,8 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public Set<MasterDto> findAll() {
-        return convertToSetMasterDto(masterRepo.findAll());
+        //return convertToSetMasterDto(masterRepo.findAll());
+        return convertToSetMasterDto(masterRepo.findByIsActiveTrue());
     }
 
     @Override

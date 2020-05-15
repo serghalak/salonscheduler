@@ -5,6 +5,8 @@ import com.salon.model.Master;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Set;
+
 @Repository
 public interface MasterRepo
         extends PagingAndSortingRepository<Master,Long> {
@@ -13,5 +15,7 @@ public interface MasterRepo
 //    List<Master>findMasterByLastName(String lastName);
 //    List<Master>findMasterBySpecializations(Specialization specialization);
     //User findMasterByUser(Master master);
+
+    Set<Master> findByIsActiveTrue();
 
 }

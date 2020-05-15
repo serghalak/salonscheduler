@@ -16,5 +16,7 @@ public class Person extends IdEntity{
     private String phoneNumber;
     private String email;
 
+    private Boolean isActive=true;
+
 
 }

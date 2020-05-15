@@ -51,11 +51,15 @@ public class MasterController {
 
     @PostMapping
     public MasterResponse createMaster(@RequestBody MasterRequest masterRequest){
-
         MasterDto masterDto = convertToMasterDto(masterRequest);
         MasterDto saveMasterDto = masterService.save(masterDto);
         MasterResponse saveClientResponse =convertToMasterResponse(saveMasterDto);
         return saveClientResponse;
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void deleteMasterById(@PathVariable("id")Long id){
+
     }
 ////----------------------------------------------------------------------------------------
     private Set<MasterResponse>convertToSetMasterResponse(Set<MasterDto> masters){
