@@ -39,8 +39,10 @@ public class MasterController {
     }
 
     @GetMapping/*(name = "",consumes = {},produces = {})*/
-    public void getAllMasters(){
-        System.out.println("api/masters/ all masters");
+    public Set<MasterResponse> getAllMasters(){
+        Set<MasterDto> masters = masterService.findAll();
+        return convertToSetMasterResponse(masters);
+        //System.out.println("api/masters/ all masters");
     }
 
     @PostMapping
@@ -51,28 +53,47 @@ public class MasterController {
         MasterResponse saveClientResponse =convertToMasterResponse(saveMasterDto);
         return saveClientResponse;
     }
-
-
+////----------------------------------------------------------------------------------------
+    private Set<MasterResponse>convertToSetMasterResponse(Set<MasterDto> masters){
+        Set<MasterResponse>masterResponses=new HashSet<>();
+        for(MasterDto masterDto : masters){
+            masterResponses.add(convertToMasterResponse(masterDto));
+        }
+        return masterResponses;
+    }
 
     private MasterDto convertToMasterDto(MasterRequest masterRequest){
 
-        Set<SpecializationRequest> specializations = masterRequest.getSpecializations();
-        //Type type = convertToSetSpecializations(specializations);
-        Set<SpecializationDto>specializationDtos=new HashSet<>();
-        for (SpecializationRequest specializationRequest : specializations){
-            SpecializationDto specializationDto =
-                    convertToSpecializationDto(specializationRequest);
-            specializationDtos.add(specializationDto);
-        }
-
-        MasterDto map = modelMapper.map(masterRequest, MasterDto.class);
-        map.setSpecializations(specializationDtos);
-        return map;
+//        Set<SpecializationRequest> specializations = masterRequest.getSpecializations();
+//        //Type type = convertToSetSpecializations(specializations);
+//        Set<SpecializationDto>specializationDtos=new HashSet<>();
+//        for (SpecializationRequest specializationRequest : specializations){
+//            SpecializationDto specializationDto =
+//                    convertToSpecializationDto(specializationRequest);
+//            specializationDtos.add(specializationDto);
+//        }
+//
+//        MasterDto map = modelMapper.map(masterRequest, MasterDto.class);
+//        map.setSpecializations(specializationDtos);
+//        return map;
+        return modelMapper.map(masterRequest,MasterDto.class);
     }
 
     private MasterResponse convertToMasterResponse(MasterDto masterDto){
+//        masterDto.getSpecializations().stream().map(
+//                specializationDto -> convertToSpecializationDto(specializationDto))
 
-        return modelMapper.map(masterDto,MasterResponse.class);
+        Set<SpecializationDto> specializations = masterDto.getSpecializations();
+        Set<SpecializationResponse>specializationResponses=new HashSet<>();
+        for (SpecializationDto specializationDto: specializations) {
+            SpecializationResponse specializationResponse =
+                    convertToSpecializationResponse(specializationDto);
+            specializationResponses.add(specializationResponse);
+        }
+
+        MasterResponse map = modelMapper.map(masterDto, MasterResponse.class);
+        map.setSpecializations(specializationResponses);
+        return map;
     }
 
 //    private java.lang.reflect.Type convertToSetSpecializations(

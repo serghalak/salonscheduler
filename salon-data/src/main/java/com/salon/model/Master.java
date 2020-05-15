@@ -17,7 +17,7 @@ public class Master extends Person{
     private Set<Appointment> appointments=
             new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany//(fetch=Fetch.EAGER)
     @JoinTable(name = "master_specialization"
             ,joinColumns = @JoinColumn(name = "master_id",referencedColumnName = "id")
             ,inverseJoinColumns = @JoinColumn(name="specialization_id",referencedColumnName = "id"))

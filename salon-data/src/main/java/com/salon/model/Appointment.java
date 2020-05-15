@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -18,8 +19,10 @@ import java.util.Date;
 public class Appointment extends IdEntity{
 
     //@Column
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date startDate;
     //@Column
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date endDate;
     //@Column
     private String room;
