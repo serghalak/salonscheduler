@@ -28,13 +28,17 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public Set<MasterDto> findAll() {
-        //return convertToSetMasterDto(masterRepo.findAll());
-        return convertToSetMasterDto(masterRepo.findByIsActiveTrue());
+        return convertToSetMasterDto(masterRepo.findAll());
+        //return convertToSetMasterDto(masterRepo.findByIsActiveTrue());
     }
 
     @Override
     public MasterDto findById(Long id) {
-        Optional<Master> master = masterRepo.findById(id);
+        //Optional<Master> master = masterRepo.findById(id);
+        Optional<Master> master =masterRepo.findByIdAndIsActiveTrue(id);
+        if(!master.isPresent()){
+            throw new RuntimeException("Master not found");
+        }
         return convertToMasterDto(master.get());
     }
 
@@ -59,7 +63,11 @@ public class MasterServiceImpl implements MasterService {
         masterRepo.save(masterDelete);
     }
 
-//----------------------------------------------------------------
+
+
+    //----------------------------------------------------------------
+
+
     private Master convertToMaster(MasterDto masterDto){
         return modelMapper.map(masterDto,Master.class);
     }

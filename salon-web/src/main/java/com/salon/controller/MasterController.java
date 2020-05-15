@@ -51,17 +51,27 @@ public class MasterController {
 
     @PostMapping
     public MasterResponse createMaster(@RequestBody MasterRequest masterRequest){
-        MasterDto masterDto = convertToMasterDto(masterRequest);
-        MasterDto saveMasterDto = masterService.save(masterDto);
-        MasterResponse saveClientResponse =convertToMasterResponse(saveMasterDto);
-        return saveClientResponse;
+        return createAndUpdateMaster(masterRequest);
     }
 
     @DeleteMapping(path = "/{id}")
     public void deleteMasterById(@PathVariable("id")Long id){
         masterService.deleteById(id);
     }
+
+    @PutMapping
+    MasterResponse updateMaster(@RequestBody MasterRequest masterRequest){
+        return createAndUpdateMaster(masterRequest);
+    }
 ////----------------------------------------------------------------------------------------
+    private MasterResponse createAndUpdateMaster(MasterRequest masterRequest){
+        MasterDto masterDto = convertToMasterDto(masterRequest);
+        MasterDto saveMasterDto = masterService.save(masterDto);
+        MasterResponse saveClientResponse =convertToMasterResponse(saveMasterDto);
+        return saveClientResponse;
+    }
+
+
     private Set<MasterResponse>convertToSetMasterResponse(Set<MasterDto> masters){
         Set<MasterResponse>masterResponses=new HashSet<>();
         for(MasterDto masterDto : masters){
