@@ -4,12 +4,17 @@ package com.salon.controller;
 
 import com.salon.datasourcebeans.MySqlDataSource;
 import com.salon.dto.ClientDto;
+import com.salon.dto.MasterDto;
 import com.salon.services.ClientService;
 import com.salon.ui.model.request.ClientRequest;
 import com.salon.ui.model.response.ClientResponse;
+import com.salon.ui.model.response.MasterResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/clients")
@@ -23,11 +28,17 @@ public class ClientController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping
-    public void getAllClientAppointments(){
-        System.out.println("api/clients get method ...." );
+//    @GetMapping
+//    public void getAllClientAppointments(){
+//        System.out.println("api/clients get method ...." );
+//
+//    }
 
+    @GetMapping
+    public Set<ClientResponse> getAllClients(){
+         return convertToSetClientResponse(clientService.findAll());
     }
+
 
     @PostMapping
     public ClientResponse createClient(@RequestBody ClientRequest clientRequest){
@@ -35,16 +46,31 @@ public class ClientController {
         ClientDto clientDto = convertToClientDto(clientRequest);
         ClientDto saveClientDto = clientService.save(clientDto);
         ClientResponse saveClientResponse = convertToClientResponse(saveClientDto);
-        //System.out.println(clientRequest);
+
         return saveClientResponse;
     }
 
+    @GetMapping(path = "/{id}")
+    public ClientResponse getClientById(@PathVariable("id")Long id){
+        return convertToClientResponse(clientService.findById(id));
+    }
+
+
+//--------------------------------------------------------------------------
     private ClientDto convertToClientDto(ClientRequest clientRequest){
         return modelMapper.map(clientRequest,ClientDto.class);
     }
 
     private ClientResponse convertToClientResponse(ClientDto clientDto){
         return modelMapper.map(clientDto,ClientResponse.class);
+    }
+
+    private Set<ClientResponse>convertToSetClientResponse(Set<ClientDto> clients){
+        Set<ClientResponse>clientResponses=new HashSet<>();
+        for(ClientDto clientDto : clients){
+            clientResponses.add(convertToClientResponse(clientDto));
+        }
+        return clientResponses;
     }
 
 }
