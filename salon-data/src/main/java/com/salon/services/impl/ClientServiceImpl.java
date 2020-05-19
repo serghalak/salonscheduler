@@ -11,6 +11,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -34,8 +35,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDto findById(Long aLong) {
-        return null;
+    public ClientDto findById(Long id) {
+        Optional<Client> client =clientRepo.findByIdAndIsActiveTrue(id);
+        if(!client.isPresent()){
+            throw new RuntimeException("Client not found");
+        }
+        return convertToClientDto(client.get());
+
     }
 
     @Override

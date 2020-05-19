@@ -14,5 +14,5 @@ public interface ClientRepo extends
         PagingAndSortingRepository<Client,Long> {
     Set<Client> findByIsActiveTrue();
 
-    Optional<Master> findByIdAndIsActiveTrue(Long id);
+    Optional<Client> findByIdAndIsActiveTrue(Long id);
 }
