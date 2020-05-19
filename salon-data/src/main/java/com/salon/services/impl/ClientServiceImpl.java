@@ -54,14 +54,18 @@ public class ClientServiceImpl implements ClientService {
 
     }
 
-    @Override
-    public void delete(ClientDto object) {
 
+    @Override
+    public void delete(ClientDto clientDto) {
+        deleteById(clientDto.getId());
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    public void deleteById(Long id) {
+        Optional<Client> client = clientRepo.findByIdAndIsActiveTrue(id);
+        Client clientDelete = client.get();
+        clientDelete.setIsActive(false);
+        clientRepo.save(clientDelete);
     }
 //-----------------------------------------------------------------------------------
     private Client convertToClient(ClientDto clientDto){

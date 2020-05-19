@@ -55,6 +55,12 @@ public class ClientController {
         return convertToClientResponse(clientService.findById(id));
     }
 
+    @DeleteMapping(path = "/{id}")
+    public void deleteClientById(@PathVariable("id")Long id){
+        clientService.deleteById(id);
+    }
+
+
 
 //--------------------------------------------------------------------------
     private ClientDto convertToClientDto(ClientRequest clientRequest){

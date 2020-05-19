@@ -57,7 +57,7 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public void deleteById(Long id) {
-        Optional<Master> master = masterRepo.findById(id);
+        Optional<Master> master = masterRepo.findByIdAndIsActiveTrue(id);
         Master masterDelete = master.get();
         masterDelete.setIsActive(false);
         masterRepo.save(masterDelete);
