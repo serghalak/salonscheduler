@@ -6,6 +6,10 @@ import com.salon.model.Client;
 import com.salon.model.Master;
 import com.salon.repository.ClientRepo;
 import com.salon.services.ClientService;
+import com.salon.ui.model.request.ClientRequest;
+import com.salon.ui.model.request.MasterRequest;
+import com.salon.ui.model.response.ClientResponse;
+import com.salon.ui.model.response.MasterResponse;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
@@ -68,6 +72,7 @@ public class ClientServiceImpl implements ClientService {
         clientRepo.save(clientDelete);
     }
 //-----------------------------------------------------------------------------------
+
     private Client convertToClient(ClientDto clientDto){
         return modelMapper.map(clientDto,Client.class);
     }

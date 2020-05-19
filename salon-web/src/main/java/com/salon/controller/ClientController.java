@@ -7,6 +7,7 @@ import com.salon.dto.ClientDto;
 import com.salon.dto.MasterDto;
 import com.salon.services.ClientService;
 import com.salon.ui.model.request.ClientRequest;
+import com.salon.ui.model.request.MasterRequest;
 import com.salon.ui.model.response.ClientResponse;
 import com.salon.ui.model.response.MasterResponse;
 import org.modelmapper.ModelMapper;
@@ -42,12 +43,7 @@ public class ClientController {
 
     @PostMapping
     public ClientResponse createClient(@RequestBody ClientRequest clientRequest){
-
-        ClientDto clientDto = convertToClientDto(clientRequest);
-        ClientDto saveClientDto = clientService.save(clientDto);
-        ClientResponse saveClientResponse = convertToClientResponse(saveClientDto);
-
-        return saveClientResponse;
+        return createAndUpdateClient(clientRequest);
     }
 
     @GetMapping(path = "/{id}")
@@ -60,9 +56,22 @@ public class ClientController {
         clientService.deleteById(id);
     }
 
+    @PutMapping
+    ClientResponse updateClient(@RequestBody ClientRequest clientRequest){
+        return createAndUpdateClient(clientRequest);
+    }
 
 
 //--------------------------------------------------------------------------
+
+    private ClientResponse createAndUpdateClient(ClientRequest clientRequest){
+        ClientDto clientDto = convertToClientDto(clientRequest);
+        ClientDto saveClientDto = clientService.save(clientDto);
+        ClientResponse saveClientResponse =convertToClientResponse(saveClientDto);
+        return saveClientResponse;
+    }
+
+
     private ClientDto convertToClientDto(ClientRequest clientRequest){
         return modelMapper.map(clientRequest,ClientDto.class);
     }
