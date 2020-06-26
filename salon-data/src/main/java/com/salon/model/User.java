@@ -1,11 +1,19 @@
 package com.salon.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class User extends IdEntity {
 
     private String activateCode;
@@ -19,8 +27,12 @@ public class User extends IdEntity {
 
     private String userId;
 
+    private Long personId;
+
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "authority_id",referencedColumnName = "id")
     private Authority authority;
+
+
 
 }
