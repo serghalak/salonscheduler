@@ -11,5 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuthorityRequest extends IdEntity {
 
-    private String roleName;;
+    private String roleName;
+
 }
