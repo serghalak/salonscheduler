@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserRequest extends PersonRequest{
 
-    private String userId;
+    //private String userId;
     private String password;
     private String userName;
     private Set<AuthorityRequest> authorities=new HashSet<>();

@@ -18,4 +18,5 @@ public class PersonRequest implements Serializable {
     protected String lastName;
     protected String email;
     protected String phoneNumber;
+
 }
