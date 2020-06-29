@@ -88,13 +88,11 @@ public class UserController {
 //        authorityResponseSet.add(ar);
 //        userResponse.setAuthorities(authorityResponseSet);
         //end test*/
-
         UserDto userDto = convertToUserDto(userRequest);
         UserDto saveUserDto = userService.save(userDto);
         UserResponse userResponse = convertToUserResponse(saveUserDto);
 
         return userResponse;
-
     }
 
     @PutMapping

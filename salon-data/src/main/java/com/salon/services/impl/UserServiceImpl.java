@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto save(UserDto object) {
-        return null;
+    public UserDto save(UserDto userDto) {
+        return userDto;
     }
 
     @Override

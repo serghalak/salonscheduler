@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserResponse {
+public class UserResponse extends PersonResponse{
 
     private String userId;
     private String userName;
