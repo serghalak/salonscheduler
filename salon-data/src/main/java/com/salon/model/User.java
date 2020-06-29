@@ -22,10 +22,10 @@ public class User extends IdEntity {
 
     private String password;
 
+    private String userId;
+
     @Column(nullable = false,length = 50)
     private String userName;
-
-    private String userId;
 
     private Long personId;
 
