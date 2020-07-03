@@ -1,16 +1,19 @@
-package com.salon.ui.model.response;
+package com.salon.dto;
 
-
-import com.salon.model.IdEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthorityResponse   {
+public class AuthorityDto implements Serializable {
 
     private Long id;
     private String roleName;
+    private UserDto userDto;
+
 }

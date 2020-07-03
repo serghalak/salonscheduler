@@ -1,8 +1,6 @@
 package com.salon.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,5 +19,7 @@ public class Authority extends IdEntity {
 
     @OneToMany(cascade = {CascadeType.ALL},mappedBy = "authority")
     private Set<User> users=new HashSet<>();
+
+
 
 }

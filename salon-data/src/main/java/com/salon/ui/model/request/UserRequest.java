@@ -12,12 +12,18 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserRequest extends PersonRequest{
+public class UserRequest {
 
     //private String userId;
     private String password;
     private String userName;
-    private Set<AuthorityRequest> authorities=new HashSet<>();
+    //private Set<AuthorityRequest> authorities=new HashSet<>();
 
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String email;
+
+    private AuthorityRequest authority;
 
 }

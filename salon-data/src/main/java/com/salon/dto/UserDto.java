@@ -5,13 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDto extends PersonDto {
+public class UserDto implements Serializable {
+
+    private Long id;
 
     private String activateCode;
 
@@ -25,5 +28,11 @@ public class UserDto extends PersonDto {
 
     private Long personId;
 
-    private Set<AuthorityRequest> authorities=new HashSet<>();
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String email;
+
+    //private Set<AuthorityRequest> authorities=new HashSet<>();
+    private AuthorityDto authority;
 }

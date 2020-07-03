@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -29,9 +27,17 @@ public class User extends IdEntity {
 
     private Long personId;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String email;
+
+    @ManyToOne(cascade = { CascadeType.ALL})
     @JoinColumn(name = "authority_id",referencedColumnName = "id")
     private Authority authority;
+
+
 
 
 
