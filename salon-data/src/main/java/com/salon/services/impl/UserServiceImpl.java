@@ -8,6 +8,7 @@ import com.salon.repository.UserRepo;
 import com.salon.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -43,8 +44,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto save(UserDto userDto) {
 
+        //check for duplicates email or username
+        checkUser(userDto);
+
         User user = convertToUser(userDto);
-        user.setAuthority(getAuthority(userDto));
+        //user.setAuthority(getAuthority(userDto));
+
+
+        user.setAuthority(getAuthorityOnlyClient());
+        //hard code need to change
+        user.setPassword("testwithout_bcrypt");
+        user.setUserId("12345");
+        //
+
 
         User savedUser = userRepo.save(user);
         UserDto userSavedDto = convertToUserDto(savedUser);
@@ -76,5 +88,29 @@ public class UserServiceImpl implements UserService {
         return authorityRepo
                 .findById(userDto.getAuthority().getId())
                 .get();
+    }
+
+    private Authority getAuthorityOnlyClient(){
+        return authorityRepo.findById(3L).get();
+    }
+
+    private void checkUserByEmail(UserDto userDto){
+        User userByEmail = userRepo.findByEmail(userDto.getEmail());
+        if(userByEmail !=null){
+            throw new DuplicateKeyException(
+                    "Email: " + userDto.getEmail()+" is already exist");
+        }
+    }
+    private void checkByUserName(UserDto userDto){
+        User userByUserName = userRepo.findByUserName(userDto.getUserName());
+        if(userByUserName !=null){
+            throw new DuplicateKeyException(
+                    "User name: " + userDto.getUserName()+" is already exist");
+        }
+    }
+
+    private void checkUser(UserDto userDto){
+        checkUserByEmail(userDto);
+        checkByUserName(userDto);
     }
 }

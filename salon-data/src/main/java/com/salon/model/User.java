@@ -22,7 +22,7 @@ public class User extends IdEntity {
 
     private String userId;
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false,length = 50,unique = true)
     private String userName;
 
     private Long personId;
@@ -31,6 +31,8 @@ public class User extends IdEntity {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+
+    @Column(nullable = false,unique = true)
     private String email;
 
     @ManyToOne(cascade = { CascadeType.ALL})
