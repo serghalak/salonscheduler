@@ -10,6 +10,7 @@ import com.salon.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,14 +23,14 @@ public class UserServiceImpl implements UserService {
     private AuthorityRepo authorityRepo;
     private ModelMapper modelMapper;
     private Utils  utils;
-
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserServiceImpl(
             UserRepo userRepo
             , ModelMapper modelMapper
             ,AuthorityRepo authorityRepo
-            ,Utils utils) {
+            ,Utils utils,
+            BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepo = userRepo;
         this.modelMapper=modelMapper;
         this.authorityRepo=authorityRepo;
@@ -57,8 +58,7 @@ public class UserServiceImpl implements UserService {
         //user.setAuthority(getAuthority(userDto));
         user.setActive(false);
         user.setAuthority(getAuthorityOnlyClient());
-        //hard code need to change
-        user.setPassword("testwithout_bcrypt");
+        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setUserId(utils.generateUserId());
         //
 

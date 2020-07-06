@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
@@ -32,5 +33,10 @@ public class SalonSchedulerApplication {
 //				.setSkipNullEnabled(true)
 //				.setFieldAccessLevel(PRIVATE);
 		return mapper;
+	}
+
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder(){
+		return new BCryptPasswordEncoder();
 	}
 }
