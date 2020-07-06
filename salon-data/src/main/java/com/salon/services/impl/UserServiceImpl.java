@@ -1,5 +1,6 @@
 package com.salon.services.impl;
 
+import com.salon.common.Utils;
 import com.salon.dto.UserDto;
 import com.salon.model.Authority;
 import com.salon.model.User;
@@ -20,15 +21,20 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
     private AuthorityRepo authorityRepo;
     private ModelMapper modelMapper;
+    private Utils  utils;
+
     //private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserServiceImpl(
             UserRepo userRepo
             , ModelMapper modelMapper
-            ,AuthorityRepo authorityRepo) {
+            ,AuthorityRepo authorityRepo
+            ,Utils utils) {
         this.userRepo = userRepo;
         this.modelMapper=modelMapper;
         this.authorityRepo=authorityRepo;
+        this.utils=utils;
+
     }
 
     @Override
@@ -49,12 +55,11 @@ public class UserServiceImpl implements UserService {
 
         User user = convertToUser(userDto);
         //user.setAuthority(getAuthority(userDto));
-
-
+        user.setActive(false);
         user.setAuthority(getAuthorityOnlyClient());
         //hard code need to change
         user.setPassword("testwithout_bcrypt");
-        user.setUserId("12345");
+        user.setUserId(utils.generateUserId());
         //
 
 
@@ -97,14 +102,14 @@ public class UserServiceImpl implements UserService {
     private void checkUserByEmail(UserDto userDto){
         User userByEmail = userRepo.findByEmail(userDto.getEmail());
         if(userByEmail !=null){
-            throw new DuplicateKeyException(
+            throw new /*DuplicateKeyException*/RuntimeException(
                     "Email: " + userDto.getEmail()+" is already exist");
         }
     }
     private void checkByUserName(UserDto userDto){
         User userByUserName = userRepo.findByUserName(userDto.getUserName());
         if(userByUserName !=null){
-            throw new DuplicateKeyException(
+            throw new /*DuplicateKeyException*/ RuntimeException(
                     "User name: " + userDto.getUserName()+" is already exist");
         }
     }
