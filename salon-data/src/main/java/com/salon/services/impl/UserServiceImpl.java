@@ -10,7 +10,10 @@ import com.salon.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,20 +25,20 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
     private AuthorityRepo authorityRepo;
     private ModelMapper modelMapper;
-    private Utils  utils;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private Utils utils;
+    private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(
             UserRepo userRepo
             , ModelMapper modelMapper
-            ,AuthorityRepo authorityRepo
-            ,Utils utils,
-            BCryptPasswordEncoder bCryptPasswordEncoder) {
+            , AuthorityRepo authorityRepo
+            , Utils utils
+            , PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
-        this.modelMapper=modelMapper;
-        this.authorityRepo=authorityRepo;
-        this.utils=utils;
-
+        this.modelMapper = modelMapper;
+        this.authorityRepo = authorityRepo;
+        this.utils = utils;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -58,7 +61,7 @@ public class UserServiceImpl implements UserService {
         //user.setAuthority(getAuthority(userDto));
         user.setActive(false);
         user.setAuthority(getAuthorityOnlyClient());
-        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setUserId(utils.generateUserId());
         //
 
@@ -80,42 +83,51 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return null;
+    }
+
+
     //--------------------------------------------
-    private User convertToUser(UserDto userDto){
-        return modelMapper.map(userDto,User.class);
+    private User convertToUser(UserDto userDto) {
+        return modelMapper.map(userDto, User.class);
     }
 
-    private UserDto convertToUserDto(User user){
-        return modelMapper.map(user,UserDto.class);
+    private UserDto convertToUserDto(User user) {
+        return modelMapper.map(user, UserDto.class);
     }
 
-    private Authority getAuthority(UserDto userDto){
+    private Authority getAuthority(UserDto userDto) {
         return authorityRepo
                 .findById(userDto.getAuthority().getId())
                 .get();
     }
 
-    private Authority getAuthorityOnlyClient(){
+    private Authority getAuthorityOnlyClient() {
         return authorityRepo.findById(3L).get();
     }
 
-    private void checkUserByEmail(UserDto userDto){
+    private void checkUserByEmail(UserDto userDto) {
         User userByEmail = userRepo.findByEmail(userDto.getEmail());
-        if(userByEmail !=null){
+        if (userByEmail != null) {
             throw new /*DuplicateKeyException*/RuntimeException(
-                    "Email: " + userDto.getEmail()+" is already exist");
-        }
-    }
-    private void checkByUserName(UserDto userDto){
-        User userByUserName = userRepo.findByUserName(userDto.getUserName());
-        if(userByUserName !=null){
-            throw new /*DuplicateKeyException*/ RuntimeException(
-                    "User name: " + userDto.getUserName()+" is already exist");
+                    "Email: " + userDto.getEmail() + " is already exist");
         }
     }
 
-    private void checkUser(UserDto userDto){
+    private void checkByUserName(UserDto userDto) {
+        User userByUserName = userRepo.findByUserName(userDto.getUserName());
+        if (userByUserName != null) {
+            throw new /*DuplicateKeyException*/ RuntimeException(
+                    "User name: " + userDto.getUserName() + " is already exist");
+        }
+    }
+
+    private void checkUser(UserDto userDto) {
         checkUserByEmail(userDto);
         checkByUserName(userDto);
     }
+
+
 }

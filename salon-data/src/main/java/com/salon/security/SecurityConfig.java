@@ -1,5 +1,6 @@
 package com.salon.security;
 
+import com.salon.services.UserService;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,12 +13,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
-    public SecurityConfig(UserDetailsService userDetailsService
+    public SecurityConfig(UserService userService
             , PasswordEncoder passwordEncoder) {
-        this.userDetailsService = userDetailsService;
+        this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -28,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/users").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/users").permitAll()
                 .anyRequest().authenticated();
 
 //                .and()
@@ -42,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth
-                .userDetailsService(userDetailsService)
+                .userDetailsService(userService)
                 .passwordEncoder(passwordEncoder);
     }
 }
