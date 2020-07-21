@@ -1,10 +1,8 @@
-package com.salon.repository;
+package com.salon.repository.security;
 
 
 
-import com.salon.model.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.salon.model.security.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +13,7 @@ public interface UserRepo
       User findByEmail(String email);
       User findByPhoneNumber(String phoneNumber);
 
-      User findByUserName(String userName);
+      User findByUsername(String username);
       User findByUserId(String userId);
       User findByActivateCode(String code);
 

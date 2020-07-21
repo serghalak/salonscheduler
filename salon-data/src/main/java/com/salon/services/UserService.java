@@ -1,7 +1,6 @@
 package com.salon.services;
 
-import com.salon.dto.UserDto;
-import com.salon.model.User;
+import com.salon.dto.security.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService

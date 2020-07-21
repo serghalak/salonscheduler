@@ -1,12 +1,8 @@
-package com.salon.ui.model.response;
+package com.salon.ui.model.response.security;
 
-import com.salon.model.Authority;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -14,7 +10,7 @@ import java.util.Set;
 public class UserResponse {
 
     private String userId;
-    private String userName;
+    private String username;
     private Boolean active;
     //private Boolean userIsClient=true;
     //private Set<AuthorityResponse> authorities=new HashSet<>();

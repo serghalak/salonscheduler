@@ -1,12 +1,10 @@
-package com.salon.dto;
+package com.salon.dto.security;
 
-import com.salon.ui.model.request.AuthorityRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -24,7 +22,7 @@ public class UserDto implements Serializable {
 
     private String userId;
 
-    private String userName;
+    private String username;
 
     private Long personId;
 
@@ -33,6 +31,6 @@ public class UserDto implements Serializable {
     private String phoneNumber;
     private String email;
 
-    //private Set<AuthorityRequest> authorities=new HashSet<>();
-    private AuthorityDto authority;
+
+    private Set<RoleDto> roles;
 }

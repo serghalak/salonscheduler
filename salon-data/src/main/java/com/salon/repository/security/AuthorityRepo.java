@@ -1,7 +1,7 @@
-package com.salon.repository;
+package com.salon.repository.security;
 
 
-import com.salon.model.Authority;
+import com.salon.model.security.Authority;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

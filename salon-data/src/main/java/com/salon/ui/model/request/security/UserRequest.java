@@ -1,13 +1,9 @@
-package com.salon.ui.model.request;
+package com.salon.ui.model.request.security;
 
 
-import com.salon.model.Authority;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -16,7 +12,7 @@ public class UserRequest {
 
     //private String userId;
     private String password;
-    private String userName;
+    private String username;
     //private Set<AuthorityRequest> authorities=new HashSet<>();
 
     private String firstName;
@@ -24,6 +20,6 @@ public class UserRequest {
     private String phoneNumber;
     private String email;
 
-    private AuthorityRequest authority;
+    //private AuthorityRequest authority;
 
 }

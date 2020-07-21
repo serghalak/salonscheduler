@@ -1,22 +1,19 @@
 package com.salon.services.impl;
 
 import com.salon.common.Utils;
-import com.salon.dto.UserDto;
-import com.salon.model.Authority;
-import com.salon.model.User;
-import com.salon.repository.AuthorityRepo;
-import com.salon.repository.UserRepo;
+import com.salon.dto.security.RoleDto;
+import com.salon.dto.security.UserDto;
+import com.salon.model.security.Role;
+import com.salon.model.security.User;
+import com.salon.repository.security.AuthorityRepo;
+import com.salon.repository.security.UserRepo;
 import com.salon.services.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.MessageSource;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -60,7 +57,8 @@ public class UserServiceImpl implements UserService {
         User user = convertToUser(userDto);
         //user.setAuthority(getAuthority(userDto));
         user.setActive(false);
-        user.setAuthority(getAuthorityOnlyClient());
+        //user.setAuthority(getAuthorityOnlyClient());
+       user.setRoles(null);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setUserId(utils.generateUserId());
         //
@@ -98,15 +96,22 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserDto.class);
     }
 
-    private Authority getAuthority(UserDto userDto) {
-        return authorityRepo
-                .findById(userDto.getAuthority().getId())
-                .get();
+//    private Authority getAuthority(UserDto userDto) {
+//        return authorityRepo
+//                .findById(userDto.getAuthority().getId())
+//                .get();
+//    }
+//
+//    private Authority getAuthorityOnlyClient() {
+//        return authorityRepo.findById(3L).get();
+//    }
+
+    private Set<Role>getRoles(UserDto userDto){
+        Set<RoleDto> roles = userDto.getRoles();
+        return null;
     }
 
-    private Authority getAuthorityOnlyClient() {
-        return authorityRepo.findById(3L).get();
-    }
+
 
     private void checkUserByEmail(UserDto userDto) {
         User userByEmail = userRepo.findByEmail(userDto.getEmail());
@@ -117,10 +122,10 @@ public class UserServiceImpl implements UserService {
     }
 
     private void checkByUserName(UserDto userDto) {
-        User userByUserName = userRepo.findByUserName(userDto.getUserName());
+        User userByUserName = userRepo.findByUsername(userDto.getUsername());
         if (userByUserName != null) {
             throw new /*DuplicateKeyException*/ RuntimeException(
-                    "User name: " + userDto.getUserName() + " is already exist");
+                    "User name: " + userDto.getUsername() + " is already exist");
         }
     }
 

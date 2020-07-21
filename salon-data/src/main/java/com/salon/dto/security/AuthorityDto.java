@@ -1,5 +1,6 @@
-package com.salon.dto;
+package com.salon.dto.security;
 
+import com.salon.dto.security.UserDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.util.Set;
 public class AuthorityDto implements Serializable {
 
     private Long id;
-    private String roleName;
-    private UserDto userDto;
+    private String permission;
+    private Set<RoleDto> roles;
 
 }

@@ -1,20 +1,13 @@
 package com.salon.controller;
 
 
-import com.salon.dto.ClientDto;
-import com.salon.dto.UserDto;
+import com.salon.dto.security.UserDto;
 import com.salon.services.UserService;
-import com.salon.ui.model.request.ClientRequest;
-import com.salon.ui.model.request.UserRequest;
-import com.salon.ui.model.response.AuthorityResponse;
-import com.salon.ui.model.response.UserResponse;
+import com.salon.ui.model.request.security.UserRequest;
+import com.salon.ui.model.response.security.UserResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @RestController
 @RequestMapping("api/users")

@@ -1,4 +1,4 @@
-package com.salon.ui.model.response;
+package com.salon.ui.model.request.security;
 
 
 import com.salon.model.IdEntity;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthorityResponse   {
+public class AuthorityRequest extends IdEntity {
 
-    private Long id;
-    private String roleName;
+    private String permission;
+
 }
