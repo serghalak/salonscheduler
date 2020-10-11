@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<querybuilder version="8.3">
+<source>
+<database charset="utf8" collation="utf8_general_ci">petclinicrest</database>
+</source>
+<canvas>
+<table tablename="owners" alias="" left="422" top="100" width="150" height="128" />
+<table tablename="pets" alias="" left="238" top="99" width="150" height="113" />
+<table tablename="roles" alias="" left="604" top="21" width="150" height="113" />
+<table tablename="specialties" alias="" left="408" top="294" width="150" height="113" />
+<table tablename="types" alias="" left="17" top="157" width="150" height="113" />
+<table tablename="users" alias="" left="610" top="176" width="150" height="113" />
+<table tablename="vet_specialties" alias="" left="204" top="294" width="150" height="113" />
+<table tablename="vets" alias="" left="12" top="292" width="153" height="113" />
+<table tablename="visits" alias="" left="17" top="22" width="150" height="113" />
+<join type = "Inner Join">
+<from tablename = "pets" alias = "">owner_id</from>
+<to tablename = "owners" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "pets" alias = "">type_id</from>
+<to tablename = "types" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "roles" alias = "">username</from>
+<to tablename = "users" alias = "">username</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "vet_specialties" alias = "">specialty_id</from>
+<to tablename = "specialties" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "vet_specialties" alias = "">vet_id</from>
+<to tablename = "vets" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "visits" alias = "">pet_id</from>
+<to tablename = "pets" alias = "">id</to>
+</join>
+</canvas>
+<grid>
+</grid>
+</querybuilder>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<querybuilder version="8.3">
+<source>
+<database charset="utf8" collation="utf8_general_ci">familydoctor</database>
+</source>
+<canvas>
+<table tablename="address" alias="" left="285" top="60" width="150" height="113" />
+<table tablename="admin" alias="" left="30" top="54" width="150" height="188" />
+<table tablename="appointment" alias="" left="810" top="55" width="150" height="203" />
+<table tablename="invoice" alias="" left="1046" top="73" width="150" height="188" />
+<table tablename="patient" alias="" left="557" top="38" width="150" height="173" />
+<table tablename="doctor" alias="" left="553" top="242" width="150" height="173" />
+<join type = "Inner Join">
+<from tablename = "admin" alias = "">ADDRESS_ID</from>
+<to tablename = "address" alias = "">ID</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "invoice" alias = "">APPOINTMENT_ID</from>
+<to tablename = "appointment" alias = "">ID</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "appointment" alias = "">INVOICE_ID</from>
+<to tablename = "invoice" alias = "">ID</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "patient" alias = "">ADDRESS_ID</from>
+<to tablename = "address" alias = "">ID</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "appointment" alias = "">PATIENT_ID</from>
+<to tablename = "patient" alias = "">ID</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "doctor" alias = "">ADDRESS_ID</from>
+<to tablename = "address" alias = "">ID</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "appointment" alias = "">DOCTOR_ID</from>
+<to tablename = "doctor" alias = "">ID</to>
+</join>
+</canvas>
+<grid>
+</grid>
+</querybuilder>

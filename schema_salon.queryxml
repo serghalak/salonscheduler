@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<querybuilder version="8.3">
+<source>
+<database charset="utf8" collation="utf8_general_ci">salonscheduler</database>
+</source>
+<canvas>
+<table tablename="appointment" alias="" left="953" top="26" width="150" height="173" />
+<table tablename="authority" alias="" left="89" top="92" width="150" height="113" />
+<table tablename="client" alias="" left="645" top="38" width="150" height="128" />
+<table tablename="master" alias="" left="636" top="218" width="150" height="128" />
+<table tablename="master_specialization" alias="" left="937" top="308" width="150" height="113" />
+<table tablename="specialization" alias="" left="1271" top="301" width="150" height="113" />
+<table tablename="status" alias="" left="1254" top="135" width="150" height="113" />
+<table tablename="user" alias="" left="270" top="107" width="150" height="188" />
+<join type = "Inner Join">
+<from tablename = "appointment" alias = "">client_id</from>
+<to tablename = "client" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "appointment" alias = "">master_id</from>
+<to tablename = "master" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "master_specialization" alias = "">master_id</from>
+<to tablename = "master" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "master_specialization" alias = "">specialization_id</from>
+<to tablename = "specialization" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "appointment" alias = "">status_id</from>
+<to tablename = "status" alias = "">id</to>
+</join>
+<join type = "Inner Join">
+<from tablename = "user" alias = "">authority_id</from>
+<to tablename = "authority" alias = "">id</to>
+</join>
+</canvas>
+<grid>
+</grid>
+</querybuilder>
